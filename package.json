@@ -1,7 +1,6 @@
 {
   "name": "hotel-app-console",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,6 +10,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "request": "^2.88.2"
-  }
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.9"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afanou-jefferson/hotel-app-console-.git"
+  },
+  "bugs": {
+    "url": "https://github.com/afanou-jefferson/hotel-app-console-/issues"
+  },
+  "homepage": "https://github.com/afanou-jefferson/hotel-app-console-#readme",
+  "description": ""
 }

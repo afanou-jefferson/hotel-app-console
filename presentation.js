@@ -1,9 +1,9 @@
 // récupération du module `readline`
-var readline = require('readline');
-var service = require("./service.js");
+const readline = require('readline');
+const service = require("./service.js");
 
 // création d'un objet `rep` permettant de récupérer la saisie utilisateur
-var rep = readline.createInterface({
+const rep = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
@@ -22,18 +22,31 @@ function start() {
         
         switch (saisie) {
             case "1":
+
+                const listeClients = service.listerClients();
+
+                listeClients
+                    .then(clients => console.log(
+                        clients
+                            .map(client => `${client.nom} ${client.prenoms}`)
+                            .join('\n') // On rajoute un retour à la ligne
+                    ))
+                    .catch(err => console.log('Erreur !'))
+                    .finally(() => start()); // On affiche à nouveau le menu dans tous les cas, erreur ou non 
+
+                    /* Old version
                 service.listerClients(
                     listerClients => {
                         console.log(
                             listerClients
-                                .map(client => client.nom + ' ' + client.prenoms)
+                                .map(client => `${client.nom} ${client.prenoms}`)
                                 .join('\n') // On rajoute un retour à la ligne
                         );
                         start();
                     }, err => {
                         console.log("Erreur");
                         start();
-                    });
+                    }); */
                 break;
 
             case "2":
