@@ -1,24 +1,23 @@
 var request = require('request');
 
-function listerClients() {
+var backEndUrl = "https://hotel-web-app-h2.herokuapp.com"
 
-    var savedBody;
-
-    function saveBody(bodyToSave) {
-        savedBody = bodyToSave
-    }
+function listerClients(callbackOK, callbackKO) {
     
-    request('http://localhost:8080/clients?start=0&size=3', { json: true }, (err, res, body) => {
+    request( backEndUrl + '/clients?start=0&size=3', { json: true }, 
+    (err, res, dateRequete) => {
         if ( err ){
-            return "Erreur : " + err ;
+            callbackKO(err) ;
         } else {
-            return body
+            callbackOK(dateRequete);
         }
     });
-
-    return savedBody;
 }
 
 //function ajouterClient()
 
 exports.listerClients = listerClients;
+
+module.exports = {
+    listerClients
+}

@@ -19,10 +19,21 @@ function start() {
     console.log("99. Sortir");
 
     rep.question('Votre choix :', function (saisie) {
+        
         switch (saisie) {
             case "1":
-                var reponseDuGet = service.listerClients();
-                console.log(reponseDuGet);
+                service.listerClients(
+                    listerClients => {
+                        console.log(
+                            listerClients
+                                .map(client => client.nom + ' ' + client.prenoms)
+                                .join('\n') // On rajoute un retour à la ligne
+                        );
+                        start();
+                    }, err => {
+                        console.log("Erreur");
+                        start();
+                    });
                 break;
 
             case "2":
