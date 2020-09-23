@@ -21,15 +21,22 @@ class Service {
     }
 
     listerClient(): Promise<Client[]> {
-        return this.request.get(`${backEndUrl}/clients`, {json: true}) //Return une promesse qui si succès renvois un/des ClientBack (forme de DTO de Client) et pour chacun d'entre eux on les map en objet Client
-            .then((result: ClientBack[]) => result.map(clientBack => new Client(clientBack.uuid, clientBack.nom, clientBack.prenoms)));
+        return this.request.get(`${backEndUrl}/clients?start=0&size=3`, {json: true}) //Return une promesse qui si succès renvois un/des ClientBack (forme de DTO de Client) et pour chacun d'entre eux on les map en objet Client
+            .then((result: ClientBack[]) => result.map(clientBack => new Client(clientBack.uuid, clientBack.nom, clientBack.prenoms)));    
+
     }
 
-    findByName(nomAChercher: string): Promise<Client[]> {
+    //Non programmé sur l'API coté Spring uploadée sur Heroku
+ 
+ 
+    /*   findByName(nomAChercher: string): Promise<Client[]> {
         return this.request.get(`${backEndUrl}/clients/nom=${nomAChercher}`, { json: true })
             .then((result: ClientBack[]) => result.map(clientBack => new Client(clientBack.uuid, clientBack.nom, clientBack.prenoms)));
     }
+*/
 
+    //Non programmé sur l'API coté Spring uploadée sur Heroku
+/*
     posterClient(saisieNom: string, saisiePrenom: string): Promise<void> {
         return this.request.post({
             url: `${backEndUrl}/clients`,
@@ -40,6 +47,7 @@ class Service {
             }
         });
     }
+*/
 
 
 
